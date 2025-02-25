@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Who is the AI?</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #FFB6C1; /* Baby pink background */
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #FF69B4;
+            color: white;
+            border-radius: 50px;
+            border: none;
+            padding: 15px 40px;
+            font-size: 18px;
+            display: block;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .vote-container {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; /* Keep everything aligned left */
+            width: 100%;
+            text-align: left;
+        }
+
+        .vote-entry {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            gap: 15px;
+            width: 100%;
+        }
+
+        .vote-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: top; /* Moves the image focus upward */
+}
+
+
+
+
+        .vote-bar-container {
+            flex-grow: 1;
+            height: 20px;
+            background-color: #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .vote-bar {
+            height: 100%;
+            background-color: #FF69B4;
+            border-radius: 10px;
+            transition: width 0.3s ease;
+            min-width: 10px;
+        }
+
+        .info-section {
+            margin-top: 40px;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .info-section a {
+            color: #FF69B4;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .info-section a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Who is the AI?</h1>
+
+    <div class="vote-container">
+        <div class="vote-entry">
+            <img src="astarte.png" alt="Astarte" class="vote-image">
+            <button onclick="vote('Astarte')">Astarte</button>
+            <div class="vote-bar-container">
+                <div id="bar-Astarte" class="vote-bar"></div>
+            </div>
+        </div>
+
+        <div class="vote-entry">
+            <img src="luke.png" alt="Luke" class="vote-image">
+            <button onclick="vote('Luke')">Luke</button>
+            <div class="vote-bar-container">
+                <div id="bar-Luke" class="vote-bar"></div>
+            </div>
+        </div>
+
+        <div class="vote-entry">
+            <img src="nandini.png" alt="Nandini" class="vote-image" id="image-Nandini">
+            <button onclick="vote('Nandini')">Nandini</button>
+            <div class="vote-bar-container">
+                <div id="bar-Nandini" class="vote-bar"></div>
+            </div>
+        </div>
+
+        <div class="vote-entry">
+            <img src="mustafa.png" alt="Mustafa" class="vote-image">
+            <button onclick="vote('Mustafa')">Mustafa</button>
+            <div class="vote-bar-container">
+                <div id="bar-Mustafa" class="vote-bar"></div>
+            </div>
+        </div>
+
+        <div class="vote-entry">
+            <img src="alex.png" alt="Alex" class="vote-image">
+            <button onclick="vote('Alex')">Alex</button>
+            <div class="vote-bar-container">
+                <div id="bar-Alex" class="vote-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Information Section -->
+    <div class="info-section">
+        <p><a href="information.html">Information about this project</a></p>
+    </div>
+
+    <script>
+        const votes = {
+            Astarte: 0,
+            Luke: 0,
+            Nandini: 0,
+            Mustafa: 0,
+            Alex: 0
+        };
+
+        function vote(name) {
+            votes[name]++;
+            updateResults();
+        }
+
+        function updateResults() {
+            const maxVotes = Math.max(...Object.values(votes));
+            
+            Object.keys(votes).forEach(name => {
+                const voteCount = votes[name];
+                const barWidth = maxVotes > 0 ? (voteCount / maxVotes) * 100 : 0;
+                const barElement = document.getElementById(`bar-${name}`);
+                barElement.style.width = `${barWidth}%`;
+            });
+        }
+
+        updateResults();
+    </script>
+</body>
+</html>
